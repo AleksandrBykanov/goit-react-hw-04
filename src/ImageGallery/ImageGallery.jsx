@@ -1,8 +1,6 @@
 import ImageCard from "../ImageCard/ImageCard";
 
-const ImageGallery = (images) => {
-  console.log(images);
-  
+const ImageGallery = ({images}) => {
   return (
     <ul>
       {Array.isArray(images) && images.map((image)=>(
