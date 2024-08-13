@@ -1,4 +1,36 @@
 .form {
-  width: 400px;
+  width: 500px;
   margin: 25px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.field {
+  width: 330px;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.error {
+  color: red;
+}
+
+.btn {
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(102, 93, 93, 0.705);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(49, 44, 44, 0.795);
+  }
 }

@@ -6,7 +6,7 @@ const FeedbackSchema = Yup.object().shape({
   search: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
-    .required("Required"),
+    .required("This field is required"),
 });
 
 const SearchBar = ({ onSubmit }) => {
@@ -24,6 +24,7 @@ const SearchBar = ({ onSubmit }) => {
     >
       <Form className={css.form}>
         <Field
+          className={css.field}
           name="search"
           type="text"
           autoComplete="off"
@@ -31,7 +32,7 @@ const SearchBar = ({ onSubmit }) => {
           placeholder="Search images and photos"
         />
         <ErrorMessage className={css.error} name="search" component="span" />
-        <button type="submit">Search</button>
+        <button className={css.btn} type="submit">Search</button>
       </Form>
     </Formik>
   );

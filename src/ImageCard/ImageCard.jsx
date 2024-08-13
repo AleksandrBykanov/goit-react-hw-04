@@ -1,10 +1,12 @@
+import css from "../ImageCard/ImageCard.module.css"
 
-
-function ImageCard({src, alt}) {
+function ImageCard({src, alt, regular, modalData}) {
+  
+  
   return (
-    <>
-      <img src={src} alt={alt} />
-    </>
+    <div className={css.cardWrapper} onClick={() => modalData(regular, alt)}>
+      <img className={css.img} src={src} alt={alt} />
+    </div>
   )
 }
 

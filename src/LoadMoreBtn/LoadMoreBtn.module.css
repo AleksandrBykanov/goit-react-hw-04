@@ -1,0 +1,18 @@
+.loadBnt {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(102, 93, 93, 0.705);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(49, 44, 44, 0.795);
+  }
+}
