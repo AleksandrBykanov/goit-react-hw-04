@@ -1,26 +1,25 @@
 import css from "../SearchBar/SearchBar.module.css";
-import { Field, Form, Formik, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { Field, Form, Formik} from "formik";
+import iziToast from "izitoast";
+import 'izitoast/dist/css/iziToast.css';
 
-const FeedbackSchema = Yup.object().shape({
-  search: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("This field is required"),
-});
 
 const SearchBar = ({ onSubmit }) => {
   const handleSubmit = (values) => {
+    if (values.search.trim() === "") {
+      iziToast.error({
+        position: 'topRight',
+        message:'Please, enter search word!'
+      });
+      return;
+    } 
     onSubmit(values);
   };
 
   return (
     <Formik
-      initialValues={{
-        search: "",
-      }}
+      initialValues={{search: ""}}
       onSubmit={handleSubmit}
-      validationSchema={FeedbackSchema}
     >
       <Form className={css.form}>
         <Field
@@ -31,7 +30,6 @@ const SearchBar = ({ onSubmit }) => {
           autoFocus
           placeholder="Search images and photos"
         />
-        <ErrorMessage className={css.error} name="search" component="span" />
         <button className={css.btn} type="submit">Search</button>
       </Form>
     </Formik>

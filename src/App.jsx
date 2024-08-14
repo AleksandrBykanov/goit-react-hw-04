@@ -18,6 +18,7 @@ function App() {
 	const [modalImage, setModalImage] = useState('');
 	const [altDescription, setAltDescription] = useState('');
   const [totalPages, setTotalPages] = useState(0);
+  const [length, setLength] = useState(null);
 
   useEffect(() => {
     if (search === null) return;
@@ -29,6 +30,7 @@ function App() {
         );
         setImages((images) => [...images, ...data.results]);
         setTotalPages(data.total_pages);
+        setLength(data.total);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -47,17 +49,14 @@ function App() {
     setPage(page + 1)
   };
 
-  const openModal = () => {
-		setIsOpen(true);
-	};
-
-	const closeModal = () => {
+  const closeModal = () => {
 		setIsOpen(false);
 	};
 
-	const modalData = (src, alt) => {
+	const onImageClick = (src, alt) => {
     setModalImage(src);
 		setAltDescription(alt);
+    setIsOpen(true);
 	};
 
   return (
@@ -66,7 +65,7 @@ function App() {
       {error !== null && (
         <p style={{ color: "red" }}>{error} Please, try again later.</p>
       )}
-      {images == [] ? <ErrorMessage /> : <ImageGallery images={images} openModal={openModal} modalData={modalData} />}
+      {length === 0 ? <ErrorMessage /> : <ImageGallery images={images} onImageClick={onImageClick} />}
       {loading && <Loader />}
       {totalPages > page &&<LoadMoreBtn loadMore={loadMore}/>}
       <ImageModal modalIsOpen={modalIsOpen} closeModal={closeModal} src={modalImage} alt={altDescription}/>
