@@ -18,7 +18,6 @@ function App() {
 	const [modalImage, setModalImage] = useState('');
 	const [altDescription, setAltDescription] = useState('');
   const [totalPages, setTotalPages] = useState(0);
-  const [length, setLength] = useState(null);
 
   useEffect(() => {
     if (search === null) return;
@@ -30,7 +29,6 @@ function App() {
         );
         setImages((images) => [...images, ...data.results]);
         setTotalPages(data.total_pages);
-        setLength(data.total);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -61,11 +59,8 @@ function App() {
 
   return (
     <div>
-      <SearchBar onSubmit={onSubmit} />
-      {error !== null && (
-        <p style={{ color: "red" }}>{error} Please, try again later.</p>
-      )}
-      {length === 0 ? <ErrorMessage /> : <ImageGallery images={images} onImageClick={onImageClick} />}
+      <SearchBar onSubmit={onSubmit} setPage={setPage}/>
+      {error !== null ? <ErrorMessage error={error} /> : <ImageGallery images={images} onImageClick={onImageClick} />}
       {loading && <Loader />}
       {totalPages > page &&<LoadMoreBtn loadMore={loadMore}/>}
       <ImageModal modalIsOpen={modalIsOpen} closeModal={closeModal} src={modalImage} alt={altDescription}/>

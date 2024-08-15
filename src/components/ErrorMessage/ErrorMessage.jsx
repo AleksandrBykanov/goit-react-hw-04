@@ -1,8 +1,8 @@
 import css from "../ErrorMessage/ErrorMessage.module.css"
 
-const ErrorMessage = () => {
+const ErrorMessage = ({error}) => {
   return (
-    <p className={css.message}>Nothing found for your request</p>
+    <p className={css.message}>{error}, Please try again later</p>
   )
 }
 

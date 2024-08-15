@@ -4,7 +4,7 @@ import iziToast from "izitoast";
 import 'izitoast/dist/css/iziToast.css';
 
 
-const SearchBar = ({ onSubmit }) => {
+const SearchBar = ({ onSubmit, setPage }) => {
   const handleSubmit = (values) => {
     if (values.search.trim() === "") {
       iziToast.error({
@@ -13,6 +13,7 @@ const SearchBar = ({ onSubmit }) => {
       });
       return;
     } 
+    setPage(1)
     onSubmit(values);
   };
 
